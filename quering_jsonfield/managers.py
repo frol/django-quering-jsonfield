@@ -42,7 +42,11 @@ class JSONAwareQuerySet(models.query.QuerySet):
             'contains': lambda item, value: item in value,
             'in': lambda item, value: item in value,
             'iexact': lambda item, value: item.lower() == value.lower(),
-            'exact': lambda item, value: item == value
+            'exact': lambda item, value: item == value,
+            'lt': lambda item, value: item < value,
+            'lte': lambda item, value: item <= value,
+            'gt': lambda item, value: item > value,
+            'gte': lambda item, value: item >= value,
         }
         
         def _getattr(obj, key):
