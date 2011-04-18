@@ -1,6 +1,15 @@
 Original code is here: http://natebeacham.com/blog/nate-beacham/31/
 
 Example:
+    
+    class Person(models.Model):
+        ...
+        info = JSONField(default = {})
+
+        objects = JSONAwareManager(json_fields = ['info'])
+
+    ...
+
     obj = Person.objects.create(name = "Bill")
 
     obj.info = {

@@ -1,3 +1,7 @@
+from django.db import models
+from django.utils import simplejson as json
+
+
 class JSONField(models.TextField):
     __metaclass__ = models.SubfieldBase
 

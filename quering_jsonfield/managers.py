@@ -1,7 +1,9 @@
 import itertools
 
+from django.db import models
 
-class JSONAwareQuerySet(QuerySet):
+
+class JSONAwareQuerySet(models.query.QuerySet):
     def __init__(self, json_fields = [], *args, **kwargs):
         self.json_fields = json_fields
         super(JSONAwareQuerySet, self).__init__(*args, **kwargs)
