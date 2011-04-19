@@ -10,13 +10,14 @@ class JSONAwareQuerySet(models.query.QuerySet):
         
     def _filter_or_exclude(self, negate, *args, **kwargs):
         extra_lookups = {}
-        
+
         for lookup in kwargs:
             if lookup.split('__')[0] in self.json_fields:
                 extra_lookups[lookup] = kwargs[lookup]
 
-        [kwargs.pop(key) for key in extra_lookups]
-
+        for key in extra_lookups:
+            kwargs.pop(key)
+        
         clone = super(JSONAwareQuerySet, self)._filter_or_exclude(negate, *args, **kwargs)
         
         result = []
@@ -47,6 +48,7 @@ class JSONAwareQuerySet(models.query.QuerySet):
             'lte': lambda item, value: item <= value,
             'gt': lambda item, value: item > value,
             'gte': lambda item, value: item >= value,
+            'range': lambda item, value: item >= value[0] and item <= value[1],
         }
         
         def _getattr(obj, key):
@@ -70,6 +72,11 @@ class JSONAwareQuerySet(models.query.QuerySet):
         
     def count(self):
         return super(JSONAwareQuerySet, self).count()
+    
+    def _clone(self, *args, **kwargs):
+        clone = super(JSONAwareQuerySet, self)._clone(*args, **kwargs)
+        clone.json_fields = self.json_fields
+        return clone
 
 
 class JSONAwareManager(models.Manager):
