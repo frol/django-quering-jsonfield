@@ -9,7 +9,8 @@ class JSONField(models.TextField):
 
     def to_python(self, value):
         if value:
-            value = JSONDict(json.loads(value))
+            if not isinstance(value, JSONDict):
+                value = JSONDict(json.loads(value))
         else:
             value = JSONDict()
         return value
