@@ -9,7 +9,9 @@ class JSONField(models.TextField):
 
     def to_python(self, value):
         if value:
-            if not isinstance(value, JSONDict):
+            if isinstance(value, dict):
+                value = JSONDict(value)
+            elif isinstance(value, (unicode, str)):
                 value = JSONDict(json.loads(value))
         else:
             value = JSONDict()
