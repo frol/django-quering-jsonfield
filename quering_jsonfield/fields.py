@@ -1,6 +1,12 @@
 from django.db import models
 from django.utils import simplejson as json
 
+try:
+    from south.modelsinspector import add_ignored_fields
+    add_ignored_fields(["^quering_jsonfield\.fields\.JSONField"])
+except ImportError:
+    pass
+
 from .utils import JSONDict
 
 
