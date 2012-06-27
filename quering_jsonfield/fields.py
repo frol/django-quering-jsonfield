@@ -1,11 +1,8 @@
 from django.db import models
 from django.utils import simplejson as json
 
-try:
-    from south.modelsinspector import add_ignored_fields
-    add_ignored_fields(["^quering_jsonfield\.fields\.JSONField"])
-except ImportError:
-    pass
+from south.modelsinspector import add_introspection_rules
+add_introspection_rules([], ["^quering_jsonfield\.fields\.JSONField"])
 
 from .utils import JSONDict
 
