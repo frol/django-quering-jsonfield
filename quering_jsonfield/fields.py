@@ -20,6 +20,6 @@ class JSONField(models.TextField):
             value = JSONDict()
         return value
 
-    def get_db_prep_save(self, value):
+    def get_db_prep_save(self, value, *args, **kwargs):
         value = json.dumps(value)
-        return super(JSONField, self).get_db_prep_save(value)
+        return super(JSONField, self).get_db_prep_save(value, *args, **kwargs)
