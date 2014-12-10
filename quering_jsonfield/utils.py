@@ -1,7 +1,6 @@
-from django.utils import simplejson
-
+import json
 
 class JSONDict(dict):
     
     def __repr__(self):
-        return unicode(simplejson.dumps(self, indent=4))
+        return unicode(json.dumps(self, indent=4))
