@@ -1,4 +1,11 @@
-Original code is here: http://natebeacham.com/blog/nate-beacham/31/
+JSONField with a hacky support for quering
+==========================================
+
+WARNING: It is not advised to use in a high-loaded projects!
+
+There is a native django.contrib.postgres.fields.JSONField for Postgres (new in Django 1.9): https://docs.djangoproject.com/en/1.9/ref/contrib/postgres/fields/#querying-jsonfield
+
+This module was tested on Django >=1.4, <=1.8.
 
 Example:
     
@@ -26,3 +33,6 @@ Example:
     Person.objects.filter(info__address__country = 'Canada')
 
     >>> [Person: "Bill"]
+
+
+Original code was taken from: http://natebeacham.com/blog/nate-beacham/31/ (the link is broken, but left for the history)
