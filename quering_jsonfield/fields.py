@@ -5,7 +5,7 @@ from django.db import models
 try:
     from south.modelsinspector import add_introspection_rules
     add_introspection_rules([], ["^quering_jsonfield\.fields\.JSONField"])
-except:
+except ImportError:
     pass
 
 from .utils import JSONDict
