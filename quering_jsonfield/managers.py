@@ -1,8 +1,7 @@
 import itertools
 
 from django.db import models
-import django.VERSION as DJANGO_VERSION
-
+from django import VERSION as DJANGO_VERSION
 
 class JSONAwareQuerySet(models.query.QuerySet):
     def __init__(self, json_fields = [], *args, **kwargs):
