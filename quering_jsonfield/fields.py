@@ -2,8 +2,11 @@ import json
 
 from django.db import models
 
-from south.modelsinspector import add_introspection_rules
-add_introspection_rules([], ["^quering_jsonfield\.fields\.JSONField"])
+try:
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([], ["^quering_jsonfield\.fields\.JSONField"])
+except:
+    pass
 
 from .utils import JSONDict
 
